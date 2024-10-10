@@ -12,13 +12,13 @@ znc_log_directory = ""
 
 # The network GUID and channel for each log (you will need to provide this)
 network_guid = ""  # Example: "aef323ad-3893-4b22-bc3a-20985c9981fe"
-channel = ""  # Example IRC channel
+channel = ""  # desired IRC channel
 
 # Connect to the SQLite database
 conn = sqlite3.connect(db_path)
 cursor = conn.cursor()
 
-# Function to convert ZNC timestamps (YYYY-MM-DD HH:MM:SS) to milliseconds since epoch
+# convert ZNC timestamps (YYYY-MM-DD HH:MM:SS) to milliseconds since epoch
 def convert_to_epoch_ms(datetime_str):
     dt = datetime.strptime(datetime_str, "%Y-%m-%d %H:%M:%S")
     return int(dt.timestamp() * 1000)
@@ -100,7 +100,7 @@ for log_file in sorted(os.listdir(znc_log_directory)):
 
                 except Exception as e:
                     print(f"Error processing log message: {e}")
-                    print(f"Log message content: {log_message}")  # Print the content for debugging
+                    print(f"Log message content: {log_message}")  # Print some crap for debugging
 
 # Commit changes and close the connection
 conn.commit()
